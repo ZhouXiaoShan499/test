@@ -109,8 +109,21 @@
 
 ### `project.config.json` / `project.private.config.json`
 
-- 前者是项目的「身份证」：AppID、编译设置、是否空白模板等，**一般不要改**。
+- 前者是项目的「身份证」：编译设置、是否空白模板等，**一般不要改**。
 - 后者是你自己电脑上的偏好（比如模拟器设置），不影响别人。
+
+> **AppID 说明（重要）**
+>
+> 仓库里的 `project.config.json` 故意使用占位符 `wx0000000000000000`，避免真实 AppID 暴露在公开仓库中。
+>
+> 真正的 AppID 放在 `project.private.config.json` 的 `appid` 字段里，该文件已被 `.gitignore` 排除，不会被提交。
+>
+> **如果你是刚克隆这个项目：**
+> 1. 在微信开发者工具中打开项目，会提示 AppID 无效；
+> 2. 点「详情 → 基本信息 → AppID」，改成你自己的 AppID；
+> 3. 开发者工具会自动把它写进 `project.private.config.json`，不会污染 Git 记录。
+>
+> **如果你要发布自己的版本：** 换成一个已开通云开发的环境，并在 `app.js` 的 `wx.cloud.init()` 里传入对应环境 ID（当前用默认环境）。
 
 ### `sitemap.json`
 
