@@ -1,0 +1,128 @@
+<!-- pages/index/index.wxml -->
+<view class="page">
+
+  <!-- 顶部：校区切换 / 搜索 / 消息 -->
+  <view class="topbar">
+    <picker mode="selector" range="{{campusList}}" bindchange="onCampusChange">
+      <view class="campus-switch">
+        <text class="campus-name">{{campus}}</text>
+        <text class="campus-arrow">▾</text>
+      </view>
+    </picker>
+    <view class="topbar-right">
+      <view class="icon-btn" bindtap="onSearchTap">🔍</view>
+      <view class="icon-btn" bindtap="onMessageTap">🔔</view>
+    </view>
+  </view>
+
+  <!-- 主卡片：今日打卡 -->
+  <view class="hero-card">
+    <view class="hero-left">
+      <view class="hero-label">今日打卡</view>
+      <view class="hero-status" wx:if="{{todayChecked}}">
+        已完成 · {{todayTypeName}}
+      </view>
+      <view class="hero-status" wx:else>还没打卡，现在开始吧</view>
+      <view class="hero-streak">
+        连续打卡 <text class="streak-num">{{streak}}</text> 天
+      </view>
+    </view>
+    <view class="hero-btn {{todayChecked ? 'done' : ''}}" bindtap="goCheckin">
+      {{todayChecked ? '已打卡' : '去打卡'}}
+    </view>
+  </view>
+
+  <!-- 待办笔记 + 最近活动 -->
+  <view class="two-col">
+    <view class="mini-card" bindtap="goNotes">
+      <view class="mini-label">我的笔记</view>
+      <view class="mini-num">{{noteCount}}</view>
+      <view class="mini-sub" wx:if="{{latestNote}}">{{latestNote.title}}</view>
+      <view class="mini-sub" wx:else>记录第一条校园笔记</view>
+    </view>
+    <view class="mini-card" bindtap="goCampus">
+      <view class="mini-label">校区活动</view>
+      <view class="mini-num">{{activities.length}}</view>
+      <view class="mini-sub" wx:if="{{activities.length}}">{{activities[0].title}}</view>
+      <view class="mini-sub" wx:else>暂无活动</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="section-title">快捷入口</view>
+  <view class="quick-grid">
+    <view
+      class="quick-item"
+      wx:for="{{quickEntries}}"
+      wx:key="key"
+      data-url="{{item.url}}"
+      bindtap="onQuickTap"
+    >
+      <view class="quick-emoji">{{item.emoji}}</view>
+      <view class="quick-name">{{item.name}}</view>
+    </view>
+  </view>
+
+  <!-- 信息流：校园动态 -->
+  <view class="section-title">
+    <text>校园动态</text>
+    <text class="more" bindtap="goCampus">全部 ›</text>
+  </view>
+  <view class="card" wx:if="{{activities.length}}">
+    <view
+      class="feed-row"
+      wx:for="{{activities}}"
+      wx:key="_id"
+      wx:if="{{index < 3}}"
+    >
+      <view class="feed-dot"></view>
+      <view class="feed-body">
+        <view class="feed-title">{{item.title}}</view>
+        <view class="feed-meta">{{item.timeText}} · {{item.place}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="card empty" wx:else>
+    <text class="empty-icon">📣</text>
+    还没有校园动态
+  </view>
+
+  <!-- 信息流：热门笔记 -->
+  <view class="section-title">
+    <text>热门笔记</text>
+    <text class="more" bindtap="goNotes">更多 ›</text>
+  </view>
+  <view
+    class="card note-row"
+    wx:for="{{hotNotes}}"
+    wx:key="_id"
+    data-id="{{item._id}}"
+    bindtap="openNote"
+  >
+    <view class="note-row-title">{{item.title}}</view>
+    <view class="note-row-desc ellipsis-2">{{item.content}}</view>
+    <view class="note-row-foot">
+      <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+      <text class="note-row-author">{{item.authorName || '同学'}}</text>
+    </view>
+  </view>
+  <view class="card empty" wx:if="{{!hotNotes.length}}">
+    <text class="empty-icon">📝</text>
+    还没有公开笔记，去写第一条吧
+  </view>
+
+  <!-- 信息流：打卡排行榜 -->
+  <view class="section-title">今日打卡排行榜</view>
+  <view class="card" wx:if="{{rankList.length}}">
+    <view class="rank-row" wx:for="{{rankList}}" wx:key="name">
+      <view class="rank-no {{index < 3 ? 'top' : ''}}">{{index + 1}}</view>
+      <view class="rank-name">{{item.name}}</view>
+      <view class="rank-count">{{item.emoji}} {{item.typeName}}</view>
+    </view>
+  </view>
+  <view class="card empty" wx:else>
+    <text class="empty-icon">🏅</text>
+    今天还没有人打卡，你可以是第一名
+  </view>
+
+</view>

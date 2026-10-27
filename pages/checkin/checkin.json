@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "打卡",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {}
+}

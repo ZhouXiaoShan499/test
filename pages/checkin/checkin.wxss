@@ -1,0 +1,291 @@
+/* pages/checkin/checkin.wxss */
+
+/* 顶部统计 */
+.stat-row {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 24rpx;
+  padding: 28rpx 0;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-weak);
+  margin-top: 6rpx;
+}
+
+.stat-line {
+  width: 1rpx;
+  height: 56rpx;
+  background: var(--line);
+}
+
+/* 打卡类型 */
+.type-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.type-item {
+  width: calc(20% - 12rpx);
+  margin-right: 15rpx;
+  margin-bottom: 16rpx;
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 20rpx;
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.type-item:nth-child(5n) {
+  margin-right: 0;
+}
+
+.type-item.active {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.type-emoji {
+  font-size: 36rpx;
+  line-height: 1.2;
+}
+
+.type-name {
+  font-size: 22rpx;
+  color: var(--text-sub);
+  margin-top: 6rpx;
+}
+
+.type-item.active .type-name {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* 大按钮 */
+.big-btn {
+  margin: 20rpx 0 8rpx;
+  background: var(--ink);
+  border-radius: 28rpx;
+  padding: 44rpx 0;
+  text-align: center;
+  color: #FFFFFF;
+  transition: transform 0.15s ease;
+}
+
+.big-btn:active {
+  transform: scale(0.98);
+}
+
+.big-btn.done {
+  background: #DCE3EC;
+  color: var(--ink);
+}
+
+.big-btn-main {
+  font-size: 40rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.big-btn-sub {
+  font-size: 24rpx;
+  opacity: 0.75;
+  margin-top: 8rpx;
+}
+
+/* 热力图 */
+.heatmap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.heat-cell {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 10rpx;
+  margin: 6rpx;
+  background: #EDEAE3;
+}
+
+.heat-cell.level-1 {
+  background: #A9BDD4;
+}
+
+.heat-cell.level-2 {
+  background: var(--ink);
+}
+
+.heat-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 12rpx;
+}
+
+.heat-legend .heat-cell {
+  width: 28rpx;
+  height: 28rpx;
+  margin: 0 8rpx;
+}
+
+.legend-text {
+  font-size: 20rpx;
+  color: var(--text-weak);
+}
+
+/* 时间线 */
+.tl-row {
+  display: flex;
+  align-items: stretch;
+}
+
+.tl-left {
+  width: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12rpx;
+}
+
+.tl-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--ink);
+  flex-shrink: 0;
+}
+
+.tl-line {
+  width: 2rpx;
+  flex: 1;
+  background: var(--line);
+  margin: 6rpx 0;
+}
+
+.tl-body {
+  flex: 1;
+  padding: 0 0 28rpx 16rpx;
+}
+
+.tl-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tl-date {
+  font-size: 22rpx;
+  color: var(--text-weak);
+  margin-top: 4rpx;
+}
+
+/* 排行榜 */
+.rank-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--line);
+}
+
+.rank-row:last-child {
+  border-bottom: none;
+}
+
+.rank-no {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #EDF1F6;
+  color: var(--text-sub);
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.rank-no.top {
+  background: var(--ink);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.rank-name {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.rank-count {
+  font-size: 24rpx;
+  color: var(--text-sub);
+}
+
+/* 徽章动效 */
+.badge-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(31, 58, 95, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.badge {
+  width: 380rpx;
+  padding: 48rpx 0;
+  background: var(--card);
+  border-radius: 32rpx;
+  text-align: center;
+  animation: badge-pop 0.45s cubic-bezier(0.2, 1.4, 0.5, 1);
+}
+
+.badge-emoji {
+  font-size: 88rpx;
+  line-height: 1.2;
+}
+
+.badge-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 12rpx;
+}
+
+.badge-sub {
+  font-size: 24rpx;
+  color: var(--text-sub);
+  margin-top: 6rpx;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

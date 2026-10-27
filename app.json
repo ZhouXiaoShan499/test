@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/checkin/checkin",
+    "pages/notes/notes",
+    "pages/note-detail/note-detail",
+    "pages/campus/campus",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#F7F4EE",
+    "navigationBarBackgroundColor": "#F7F4EE",
+    "navigationBarTitleText": "校园笔记",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8A8F99",
+    "selectedColor": "#1F3A5F",
+    "backgroundColor": "#FFFDF8",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/notes/notes",
+        "text": "笔记",
+        "iconPath": "images/tab-note.png",
+        "selectedIconPath": "images/tab-note-active.png"
+      },
+      {
+        "pagePath": "pages/campus/campus",
+        "text": "校区",
+        "iconPath": "images/tab-campus.png",
+        "selectedIconPath": "images/tab-campus-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tab-me.png",
+        "selectedIconPath": "images/tab-me-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

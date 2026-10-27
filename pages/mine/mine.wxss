@@ -1,0 +1,123 @@
+/* pages/mine/mine.wxss */
+
+/* 个人信息 */
+.profile {
+  display: flex;
+  align-items: center;
+  background: var(--ink);
+  border-radius: 28rpx;
+  padding: 36rpx 32rpx;
+  color: #FFFFFF;
+}
+
+.avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2rpx solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.profile-body {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.profile-campus {
+  font-size: 24rpx;
+  opacity: 0.75;
+  margin-top: 6rpx;
+}
+
+.profile-edit {
+  font-size: 24rpx;
+  padding: 10rpx 28rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  border-radius: 999rpx;
+}
+
+/* 统计 */
+.stat-card {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 24rpx;
+  padding: 28rpx 0;
+  margin-top: 24rpx;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-weak);
+  margin-top: 6rpx;
+}
+
+.stat-line {
+  width: 1rpx;
+  height: 52rpx;
+  background: var(--line);
+}
+
+/* 菜单 */
+.menu-card {
+  padding: 0 28rpx;
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 0;
+  border-bottom: 1rpx solid var(--line);
+}
+
+.menu-row:last-child {
+  border-bottom: none;
+}
+
+.menu-emoji {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+}
+
+.menu-name {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text);
+}
+
+.menu-arrow {
+  font-size: 32rpx;
+  color: var(--text-weak);
+}
+
+/* 底部提示 */
+.footer-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-weak);
+  margin-top: 48rpx;
+}

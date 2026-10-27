@@ -1,0 +1,210 @@
+/* pages/notes/notes.wxss */
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 999rpx;
+  padding: 16rpx 28rpx;
+}
+
+.search-icon {
+  font-size: 26rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text);
+}
+
+.search-ph {
+  color: var(--text-weak);
+}
+
+/* 筛选行 */
+.filter-row {
+  display: flex;
+  align-items: center;
+  margin: 24rpx 0 8rpx;
+}
+
+.tag-scroll {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tag-chip {
+  display: inline-block;
+  padding: 10rpx 26rpx;
+  margin-right: 14rpx;
+  border-radius: 999rpx;
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  color: var(--text-sub);
+  font-size: 24rpx;
+}
+
+.tag-chip.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.view-toggle {
+  display: flex;
+  margin-left: 16rpx;
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.view-btn {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: var(--text-weak);
+}
+
+.view-btn.active {
+  background: var(--ink);
+  color: #FFFFFF;
+}
+
+/* 卡片视图 */
+.note-card {
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 24rpx;
+  padding: 28rpx;
+  margin-top: 20rpx;
+}
+
+.note-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.note-card-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.note-badge {
+  font-size: 20rpx;
+  color: var(--accent);
+  border: 1rpx solid var(--accent);
+  border-radius: 8rpx;
+  padding: 2rpx 10rpx;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.note-card-summary {
+  font-size: 26rpx;
+  color: var(--text-sub);
+  margin: 12rpx 0 16rpx;
+  line-height: 1.6;
+}
+
+.note-card-tags {
+  margin-bottom: 8rpx;
+}
+
+.note-card-foot {
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid var(--line);
+  padding-top: 16rpx;
+  margin-top: 8rpx;
+}
+
+.foot-item {
+  font-size: 22rpx;
+  color: var(--text-weak);
+  margin-right: 24rpx;
+}
+
+/* 列表视图 */
+.note-list-row {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border-bottom: 1rpx solid var(--line);
+  padding: 26rpx 8rpx;
+}
+
+.note-list-row:first-child {
+  border-top: 1rpx solid var(--line);
+}
+
+.list-main {
+  flex: 1;
+}
+
+.list-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.list-meta {
+  font-size: 22rpx;
+  color: var(--text-weak);
+  margin-top: 6rpx;
+}
+
+.list-arrow {
+  font-size: 34rpx;
+  color: var(--text-weak);
+}
+
+/* 空状态按钮 */
+.empty-btn {
+  display: inline-block;
+  margin-top: 24rpx;
+  padding: 16rpx 44rpx;
+  background: var(--ink);
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+}
+
+/* 加载提示 */
+.load-tip {
+  text-align: center;
+  color: var(--text-weak);
+  font-size: 24rpx;
+  padding: 30rpx 0 20rpx;
+}
+
+/* 悬浮按钮 */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 60rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #FFFFFF;
+  font-size: 52rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(31, 58, 95, 0.28);
+  z-index: 20;
+}

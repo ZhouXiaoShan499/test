@@ -1,0 +1,130 @@
+<!-- pages/note-detail/note-detail.wxml -->
+<view class="page">
+
+  <!-- 编辑模式（新建 / 编辑） -->
+  <block wx:if="{{mode === 'create' || mode === 'edit'}}">
+    <view class="auto-tip" wx:if="{{autoSaveTip}}">{{autoSaveTip}}</view>
+
+    <input
+      class="title-input"
+      placeholder="给笔记起个标题"
+      placeholder-class="ph"
+      value="{{title}}"
+      bindinput="onTitleInput"
+    />
+
+    <view class="divider"></view>
+
+    <textarea
+      class="content-input"
+      placeholder="写下今天的校园故事…"
+      placeholder-class="ph"
+      value="{{content}}"
+      maxlength="-1"
+      auto-height="{{false}}"
+      bindinput="onContentInput"
+    ></textarea>
+
+    <!-- 已插入图片预览 -->
+    <view class="img-grid" wx:if="{{images.length}}">
+      <image
+        class="img-item"
+        wx:for="{{images}}"
+        wx:key="*this"
+        src="{{item}}"
+        mode="aspectFill"
+      />
+    </view>
+
+    <!-- 标签 -->
+    <view class="section-title">选择标签</view>
+    <view class="tag-wrap">
+      <view
+        class="tag-chip {{selectedTags.indexOf(item) > -1 ? 'active' : ''}}"
+        wx:for="{{tags}}"
+        wx:key="*this"
+        data-tag="{{item}}"
+        bindtap="onTagTap"
+      >{{item}}</view>
+    </view>
+
+    <!-- 校区 + 公开设置 -->
+    <view class="setting-row">
+      <text class="setting-label">关联校区</text>
+      <picker mode="selector" range="{{campusList}}" bindchange="onCampusChange">
+        <view class="setting-value">{{campus}} ▾</view>
+      </picker>
+    </view>
+    <view class="setting-row">
+      <text class="setting-label">公开笔记</text>
+      <switch checked="{{isPublic}}" color="#1F3A5F" bindchange="onPrivacyChange" />
+    </view>
+
+    <!-- 底部工具栏 + 保存 -->
+    <view class="bottom-bar">
+      <view class="tool-group">
+        <view class="tool-btn {{boldOn ? 'on' : ''}}" bindtap="onBold">B</view>
+        <view class="tool-btn {{listOn ? 'on' : ''}}" bindtap="onList">≡</view>
+        <view class="tool-btn" bindtap="onImage">🖼</view>
+        <view class="tool-btn" bindtap="onAttach">📎</view>
+      </view>
+      <view class="save-btn" bindtap="onSave">{{saving ? '保存中…' : '保存'}}</view>
+    </view>
+  </block>
+
+  <!-- 详情模式 -->
+  <block wx:else>
+    <view class="detail-title">{{title}}</view>
+    <view class="detail-meta">
+      <text>{{authorName}}</text>
+      <text class="dot">·</text>
+      <text>{{campus}}</text>
+      <text class="dot">·</text>
+      <text>{{dateText}}</text>
+      <text class="privacy-tag" wx:if="{{!isPublic}}">私密</text>
+    </view>
+
+    <view class="detail-tags">
+      <text class="tag" wx:for="{{selectedTags}}" wx:key="*this">{{item}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="detail-content">{{content}}</view>
+
+    <!-- 正文图片 -->
+    <view class="img-grid" wx:if="{{images.length}}">
+      <image
+        class="img-item"
+        wx:for="{{images}}"
+        wx:key="*this"
+        src="{{item}}"
+        mode="aspectFill"
+        bindtap="onPreviewImage"
+        data-src="{{item}}"
+      />
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="action-bar">
+      <view class="action-item" bindtap="onLike">
+        <text class="action-icon">👍</text>
+        <text class="action-text">{{likeCount}}</text>
+      </view>
+      <view class="action-item" bindtap="onCollect">
+        <text class="action-icon">⭐</text>
+        <text class="action-text">收藏</text>
+      </view>
+      <view class="action-item" bindtap="onComment">
+        <text class="action-icon">💬</text>
+        <text class="action-text">评论</text>
+      </view>
+      <view class="action-item" wx:if="{{isMine}}" bindtap="onEdit">
+        <text class="action-icon">✏️</text>
+        <text class="action-text">编辑</text>
+      </view>
+      <button class="share-btn" open-type="share">分享</button>
+    </view>
+  </block>
+
+</view>

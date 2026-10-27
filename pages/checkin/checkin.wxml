@@ -1,0 +1,115 @@
+<!-- pages/checkin/checkin.wxml -->
+<view class="page">
+
+  <!-- 顶部统计 -->
+  <view class="stat-row">
+    <view class="stat-item">
+      <view class="stat-num">{{streak}}</view>
+      <view class="stat-label">连续天数</view>
+    </view>
+    <view class="stat-line"></view>
+    <view class="stat-item">
+      <view class="stat-num">{{totalDays}}</view>
+      <view class="stat-label">累计打卡</view>
+    </view>
+    <view class="stat-line"></view>
+    <view class="stat-item">
+      <view class="stat-num">{{todayChecked ? '✓' : '—'}}</view>
+      <view class="stat-label">今日状态</view>
+    </view>
+  </view>
+
+  <!-- 打卡类型 -->
+  <view class="section-title">选择打卡类型</view>
+  <view class="type-grid">
+    <view
+      class="type-item {{activeType === item.key ? 'active' : ''}}"
+      wx:for="{{types}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onTypeTap"
+    >
+      <view class="type-emoji">{{item.emoji}}</view>
+      <view class="type-name">{{item.name}}</view>
+    </view>
+  </view>
+
+  <!-- 大按钮 -->
+  <view
+    class="big-btn {{todayChecked ? 'done' : ''}}"
+    bindtap="onCheckin"
+  >
+    <block wx:if="{{todayChecked}}">
+      <view class="big-btn-main">今日已打卡</view>
+      <view class="big-btn-sub">{{todayTypeName}} · 明天继续</view>
+    </block>
+    <block wx:else>
+      <view class="big-btn-main">{{submitting ? '打卡中…' : '立即打卡'}}</view>
+      <view class="big-btn-sub">坚持就是胜利</view>
+    </block>
+  </view>
+
+  <!-- 热力图 -->
+  <view class="section-title">
+    <text>最近 28 天</text>
+    <text class="more">颜色越深打卡越多</text>
+  </view>
+  <view class="card">
+    <view class="heatmap">
+      <view
+        class="heat-cell level-{{item.level}}"
+        wx:for="{{heatmap}}"
+        wx:key="key"
+      ></view>
+    </view>
+    <view class="heat-legend">
+      <text class="legend-text">少</text>
+      <view class="heat-cell level-0"></view>
+      <view class="heat-cell level-2"></view>
+      <text class="legend-text">多</text>
+    </view>
+  </view>
+
+  <!-- 打卡时间线 -->
+  <view class="section-title">打卡记录</view>
+  <view class="card" wx:if="{{timeline.length}}">
+    <view class="tl-row" wx:for="{{timeline}}" wx:key="_id">
+      <view class="tl-left">
+        <view class="tl-dot"></view>
+        <view class="tl-line" wx:if="{{index < timeline.length - 1}}"></view>
+      </view>
+      <view class="tl-body">
+        <view class="tl-title">{{item.emoji}} {{item.name}}</view>
+        <view class="tl-date">{{item.dateKey}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="card empty" wx:else>
+    <text class="empty-icon">🌱</text>
+    还没有打卡记录，点上面的按钮开始吧
+  </view>
+
+  <!-- 排行榜 -->
+  <view class="section-title">今日排行榜</view>
+  <view class="card" wx:if="{{rankList.length}}">
+    <view class="rank-row" wx:for="{{rankList}}" wx:key="name">
+      <view class="rank-no {{index < 3 ? 'top' : ''}}">{{index + 1}}</view>
+      <view class="rank-name">{{item.name}}</view>
+      <view class="rank-count">{{item.emoji}} {{item.typeName}}</view>
+    </view>
+  </view>
+  <view class="card empty" wx:else>
+    <text class="empty-icon">🏅</text>
+    今天还没有人打卡
+  </view>
+
+  <!-- 打卡成功徽章动效 -->
+  <view class="badge-mask" wx:if="{{showBadge}}">
+    <view class="badge">
+      <view class="badge-emoji">🎉</view>
+      <view class="badge-title">打卡成功</view>
+      <view class="badge-sub">连续 {{streak}} 天</view>
+    </view>
+  </view>
+
+</view>
